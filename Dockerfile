@@ -33,10 +33,18 @@ RUN sed -i 's/\${JAVA_HOME}/\${JAVA_HOME:-\/usr\/lib\/jvm\/java-8-openjdk-amd64}
 
 RUN hdfs namenode -format 
 
+RUN apt-get install python3 python3-pip -y
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install jupyter
+
 ADD bootstrap.sh /etc/bootstrap.sh
 RUN chown root:root /etc/bootstrap.sh
 RUN chmod 700 /etc/bootstrap.sh
+
+RUN mkdir workspace
+
 CMD ["/etc/bootstrap.sh", "-d"]
 
 EXPOSE 50070
 EXPOSE 8088
+EXPOSE 8888

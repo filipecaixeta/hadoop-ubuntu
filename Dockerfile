@@ -35,7 +35,7 @@ RUN hdfs namenode -format
 
 RUN apt-get install python3 python3-pip -y
 RUN python3 -m pip install --upgrade pip
-RUN python3 -m pip install jupyter
+RUN python3 -m pip install jupyterlab
 
 ADD bootstrap.sh /etc/bootstrap.sh
 RUN chown root:root /etc/bootstrap.sh
